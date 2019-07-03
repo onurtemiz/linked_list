@@ -11,11 +11,7 @@ class LinkedList
       @head = new_node
       @tail = new_node
     else
-      current = @head
-      until current == @tail
-        current = current.next_node
-      end
-      current.next_node = new_node
+      @tail.next_node = new_node
       @tail = new_node
     end
   end
@@ -34,6 +30,7 @@ class LinkedList
   end
 
   def pop
+    if @head != nil
     previous = nil
     current = @head
     until current == @tail
@@ -44,8 +41,11 @@ class LinkedList
     @tail = previous
     previous.next_node = nil
   end
+  end
+
 
   def at(index)
+    return nil if self.size > index || index < 0
     if @head == nil
       return nil
     else
@@ -55,6 +55,8 @@ class LinkedList
       current = current.next_node
     end
     current.value
+
+
   end
 
   def find(data)
@@ -124,9 +126,23 @@ class Node
 end
 
 list = LinkedList.new
+p list.size
+p list.head
+p list.tail
+p list.at(5)
+p list.pop
+p list.contains?(7)
+p list.find(6)
+puts list
 list.append(5)
 list.append(6)
 list.append(4)
-p list.find(12)
 list.prepend(9)
+p list.size
+p list.head
+p list.tail
+p list.at(5)
+p list.pop
+p list.contains?(7)
+p list.find(6)
 puts list
